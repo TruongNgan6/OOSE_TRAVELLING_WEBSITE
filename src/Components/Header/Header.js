@@ -37,10 +37,14 @@ const Header = () => {
           </div>
           <div className="content-right">
             <div className="login">
-              <FiLogIn /> Login
+              <FiLogIn /> <NavLink to="/login" activeClassName="active-link">
+                Login
+              </NavLink>
             </div>
             <div className="sign-up">
-              <BiUser /> Sign Up
+              <BiUser /> <NavLink to="/sign-up" activeClassName="active-link">
+                Sign Up
+              </NavLink>
             </div>
           </div>
         </div>

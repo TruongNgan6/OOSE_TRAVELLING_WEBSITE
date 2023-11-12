@@ -3,6 +3,7 @@ import "./App.css";
 import Footer from "./Components/Footer/Footer.js";
 import { Outlet } from "react-router-dom";
 
+
 function App() {
   return (
     <div className="app-container">
@@ -15,6 +16,7 @@ function App() {
       <div className="footer-container">
         <Footer />
       </div>
+
     </div>
   );
 }
