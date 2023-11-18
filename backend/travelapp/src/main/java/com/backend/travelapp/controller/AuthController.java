@@ -26,6 +26,4 @@ public class AuthController {
     public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest request) {
         return ResponseEntity.ok(authenticationService.signIn(request));
     }
-//    @PutMapping("/resetpasw")
-//    public ResponseEntity<ResetPasswordResponse> resetPassword(@RequestBody )
 }
