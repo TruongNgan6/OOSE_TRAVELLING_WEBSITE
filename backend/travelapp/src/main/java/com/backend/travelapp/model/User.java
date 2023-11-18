@@ -42,7 +42,7 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = false)
     private String phone;
 
     @Column(name = "country")
