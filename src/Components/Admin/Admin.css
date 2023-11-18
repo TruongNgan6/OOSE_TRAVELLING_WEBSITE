@@ -1,0 +1,26 @@
+.container {
+    padding: 80px 60px;
+}
+
+.title-manage-user {
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.container button {
+    background-color: brown;
+    margin-bottom: 50px;
+    border: none;
+}
+
+.container button:hover {
+    background-color: rgb(221, 96, 96) !important;
+}
+
+.table-user-title {
+    font-size: 25px;
+    font-weight: 800;
+    padding-bottom: 50px;
+}

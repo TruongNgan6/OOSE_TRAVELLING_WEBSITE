@@ -14,6 +14,7 @@ import Login from "./Components/Login/Login";
 import 'bootstrap/dist/css/bootstrap.css';
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Admin from "./Components/Admin/Admin";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -29,7 +30,9 @@ root.render(
           <Route path="destination" element={<Destination />} />
           <Route path="login" element={<Login />} />
           <Route path="sign-up" element={<SignUp />} />
+          <Route path="admin" element={<Admin />} />
         </Route>
+
         {/* </React.StrictMode> */}
       </Routes>
 

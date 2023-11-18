@@ -1,13 +1,11 @@
 import React from "react";
-import "./SignUp.css";
-import SignUpImage from "../../Assets/Images/sign-up.jpg";
 import { useState } from "react";
 import { toast } from 'react-toastify';
-import { postSignUp } from '../../Services/apiService';
+import { postCreateNewUser } from '../../Services/apiService';
 import { Navigate, useNavigate } from "react-router-dom";
 
 
-const SignUp = () => {
+const CreateNewUser = (onClose, onSuccess) => {
 
     // const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -19,8 +17,15 @@ const SignUp = () => {
 
     const [phone, setPhone] = useState("");
     const [country, setCountry] = useState("");
-    const [agreeTerms, setAgreeTerms] = useState(true);
 
+    const handleClose = () => {
+        onClose(); // Gọi hàm đóng component từ prop
+    };
+
+    const handleSuccess = () => {
+        onSuccess(); // Gọi hàm khi tạo user thành công từ prop
+        handleClose(); // Đóng component
+    };
     const navigate = useNavigate();
 
     const validateEmail = (email) => {
@@ -31,7 +36,7 @@ const SignUp = () => {
             );
     };
 
-    const handleSubmitSignUp = async () => {
+    const handleSubmitAddUser = async () => {
         //validate
         const isvalidateEmail = validateEmail(email);
 
@@ -55,31 +60,15 @@ const SignUp = () => {
             return;
         }
 
-        if (!agreeTerms) {
-            toast.error('You must agree to the Terms of Service and Privacy Statement');
-            return;
-        }
-        //call apis
-        // let data = {
-        //     username: username,
-        //     password: password,
-        //     confirmPassword: confirmPassword,
-        //     firstName: firstName,
-        //     lastName: lastName,
-        //     birthDate: birthDate,
-        //     email: email,
-        //     phone: phone,
-        //     country: country,
-        // }
-        // console.log("check data", data)
 
-        let data = await postSignUp(email, password, firstName, lastName, birthDate, phone, country);
+
+        let data = await postCreateNewUser(email, password, firstName, lastName, birthDate, phone, country);
         console.log("check res", data)
         if (data && data.message === "Sign Up Successfully") {
-            toast.success(data.errMessage);
-            navigate('/login')
+            toast.success(data.message);
+            handleSuccess();
         }
-        if (data && data.errCode !== 0) {
+        if (data && data.errCode === 0) {
             toast.error(data.errMessage);
         }
 
@@ -90,12 +79,8 @@ const SignUp = () => {
     return (
 
         <>
-            <div className="register-introduce">
-                <img src={SignUpImage} />
-                <div className="title">REGISTER</div>
-            </div>
+
             <div className="container">
-                <div className="infor-after-create">After creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after you finished the tour.</div>
                 <form className="row g-3">
                     {/* <div className="row g-3"></div> */}
                     <div className="col-md-6">
@@ -170,20 +155,9 @@ const SignUp = () => {
                         />
                     </div>
                     <div className="col-md-12">
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" id="gridCheck"
-                                checked={agreeTerms}
-                                onChange={() => setAgreeTerms(!agreeTerms)}
-                            />
-                            <label className="form-check-label" htmlFor="gridCheck">
-                                * Creating an account means you're okay with our Terms of Service and Privacy Statement.
-                            </label>
-                        </div>
-                    </div>
-                    <div className="col-md-12">
                         <button type="button" className="btn btn-primary"
-                            onClick={() => { handleSubmitSignUp() }}
-                        >Sign in</button>
+                            onClick={() => { handleSubmitAddUser(); }}
+                        >Add</button>
                     </div>
                 </form>
             </div>
@@ -192,4 +166,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
+export default CreateNewUser;
