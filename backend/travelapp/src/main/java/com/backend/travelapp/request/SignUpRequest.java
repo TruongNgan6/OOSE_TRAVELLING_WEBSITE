@@ -1,6 +1,7 @@
 package com.backend.travelapp.request;
 
 import lombok.Getter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 

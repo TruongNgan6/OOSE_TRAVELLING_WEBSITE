@@ -13,6 +13,5 @@ public class AddTourRequest {
     private String location;
     private String duration;
     private int quantity;
-
     private LocalDate departureDate;
 }
