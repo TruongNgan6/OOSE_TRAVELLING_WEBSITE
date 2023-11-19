@@ -94,6 +94,7 @@ const Login = () => {
                             onClick={() => { handleSubmitLogin() }}
                         >Login</button>
                     </div>
+                    <div onClick={() => { navigate('/forgot-password') }}>Quên mật khẩu</div>
                 </form>
             </div>
         </>

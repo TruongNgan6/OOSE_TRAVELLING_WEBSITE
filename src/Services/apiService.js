@@ -46,4 +46,13 @@ const getAllUsers = () => {
     return axios.get('api/admin/user', { headers: headers })
 }
 
-export { postSignUp, postLogin, getAllUsers, postCreateNewUser }
+const postUpdatePassword = (email, phone, password) => {
+    return axios.post('auth/signup', {
+        email: email,
+        phone: phone,
+        newPassword: password
+    }
+    )
+}
+
+export { postSignUp, postLogin, getAllUsers, postCreateNewUser, postUpdatePassword }
