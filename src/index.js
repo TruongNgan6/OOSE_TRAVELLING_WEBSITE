@@ -9,6 +9,9 @@ import Home from "./Components/Home/Home";
 import Blog from "./Components/Blog/Blog";
 import Contact from "./Components/Contact/Contact";
 import Destination from "./Components/Destination/Destination";
+import Tour01 from "./Components/AllTours/Tours/Tour01/Tour01";
+import ProcessBooking from "./Components/AllTours/Tours/Tour01/ProcessBooking";
+import Tours from "./Components/AllTours/Tours/Tours";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,7 +24,12 @@ root.render(
         <Route path="all-tours" element={<AllTours />} />
         <Route path="blog" element={<Blog />} />
         <Route path="destination" element={<Destination />} />
+        {/* <Route path="tours" element={<Tours />}> */}
+
+        {/* </Route> */}
       </Route>
+      <Route path="/tour01" element={<Tour01 />}></Route>
+      <Route path="/process-booking" element={<ProcessBooking />} />
       {/* </React.StrictMode> */}
     </Routes>
   </BrowserRouter>

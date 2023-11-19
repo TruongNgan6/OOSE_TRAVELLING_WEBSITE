@@ -5,7 +5,7 @@
 }
 .footer-component{
     width: 100%;
-    height: 15rem;
+    height: 20rem;
 }
 
 .footer-content{
@@ -13,10 +13,11 @@
     width: 100%;
     display: flex;
     background-color: #222222;
+    
 }
 
 .footer-contact-component{
-    padding: 2rem;
+    padding: 5rem;
     width: 25%;
     margin-left: 10rem;
 }
@@ -40,7 +41,7 @@
 .footer-aboutUs-component,
 .footer-support-component,
 .footer-paySafe-component{
-    padding: 2rem;
+    padding: 5rem;
     width: 25%;
     align-items: flex-start;
 }
@@ -49,5 +50,14 @@
     margin-right: 10rem;
 }
 
+.copyright-container{
+    width: 100%;
+    height: 5rem;
+    color: #ffffff;
+    background-color: #181818;
+    padding: 2.8rem;
+    font-size: 1rem;
+    text-align: center;
+}
 
 
