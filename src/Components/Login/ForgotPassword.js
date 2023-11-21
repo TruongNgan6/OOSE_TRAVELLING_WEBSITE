@@ -49,6 +49,7 @@ const ForgotPassword = () => {
         }
         if (data && data.message === "Your search did not return any results. Please try again with other information.") {
             toast.error(data.message);
+            // nothing just test
         }
 
     };
