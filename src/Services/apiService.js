@@ -47,7 +47,7 @@ const getAllUsers = () => {
 }
 
 const postUpdatePassword = (email, phone, password) => {
-    return axios.post('auth/signup', {
+    return axios.put('forgotpasswd/verify', {
         email: email,
         phone: phone,
         newPassword: password

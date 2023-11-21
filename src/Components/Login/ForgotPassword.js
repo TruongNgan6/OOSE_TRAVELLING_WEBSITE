@@ -43,12 +43,12 @@ const ForgotPassword = () => {
 
         let data = await postUpdatePassword(email, phone, password);
         console.log("check res", data)
-        if (data && data.message === "Sign Up Successfully") {
-            toast.success(data.errMessage);
+        if (data && data.message === "Change Password Successfully!") {
+            toast.success(data.message);
             navigate('/login')
         }
-        if (data && data.errCode !== 0) {
-            toast.error(data.errMessage);
+        if (data && data.message === "Your search did not return any results. Please try again with other information.") {
+            toast.error(data.message);
         }
 
     };
