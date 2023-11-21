@@ -18,14 +18,14 @@ const CreateNewUser = (onClose, onSuccess) => {
     const [phone, setPhone] = useState("");
     const [country, setCountry] = useState("");
 
-    const handleClose = () => {
-        onClose(); // Gọi hàm đóng component từ prop
-    };
+    // const handleClose = () => {
+    //     onClose(); // Gọi hàm đóng component từ prop
+    // };
 
-    const handleSuccess = () => {
-        onSuccess(); // Gọi hàm khi tạo user thành công từ prop
-        handleClose(); // Đóng component
-    };
+    // const handleSuccess = () => {
+    //     onSuccess(); // Gọi hàm khi tạo user thành công từ prop
+    //     handleClose(); // Đóng component
+    // };
     const navigate = useNavigate();
 
     const validateEmail = (email) => {
@@ -66,7 +66,7 @@ const CreateNewUser = (onClose, onSuccess) => {
         console.log("check res", data)
         if (data && data.message === "Sign Up Successfully") {
             toast.success(data.message);
-            handleSuccess();
+            // handleSuccess();
         }
         if (data && data.errCode === 0) {
             toast.error(data.errMessage);

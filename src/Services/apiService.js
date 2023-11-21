@@ -55,4 +55,46 @@ const postUpdatePassword = (email, phone, password) => {
     )
 }
 
-export { postSignUp, postLogin, getAllUsers, postCreateNewUser, postUpdatePassword }
+const postCreateNewTour = (title,
+    description,
+    imageURL,
+    price,
+    location,
+    duration,
+    quantity,
+    departureDate) => {
+
+    // Định nghĩa header với token
+    const token = localStorage.getItem("token");
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+
+    //submit data
+    return axios.post('auth/create-new-tour', {
+        title: title,
+        description: description,
+        imageURL: imageURL,
+        price: price,
+        location: location,
+        duration: duration,
+        quantity: quantity,
+        departureDate: departureDate
+    }, { headers: headers });
+}
+
+const getAllTours = () => {
+    // Định nghĩa header với token
+    const token = localStorage.getItem("token");
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+
+    // Gửi yêu cầu GET với Axios và headers
+    return axios.get('api/all-tour', { headers: headers })
+}
+
+export {
+    postSignUp, postLogin, getAllUsers, postCreateNewUser, postUpdatePassword,
+    postCreateNewTour, getAllTours
+}

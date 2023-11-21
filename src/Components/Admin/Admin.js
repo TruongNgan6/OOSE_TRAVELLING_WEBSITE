@@ -1,37 +1,49 @@
-import React from "react";
+import { useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import "./Admin.css";
-import TableUser from "./TableUser";
-import CreateNewUser from "./CreateNewUser";
-import { useState } from 'react';
+import ManageUser from "./ManageUser";
+import CreateNewTour from "./CreateNewTour";
 
 const Admin = () => {
-    const [isCreateUserVisible, setCreateUserVisible] = useState(false);
+    const [selectedButton, setSelectedButton] = useState(null);
+    const navigate = useNavigate();
 
-    const handleButtonClick = () => {
-        setCreateUserVisible(!isCreateUserVisible);
+    const handleClick = (button) => {
+        setSelectedButton(button);
+        navigate(`/admin/manage-${button}`);
     };
-    const handleCloseCreateUser = () => {
-        setCreateUserVisible(false);
-    };
-    const handleCreateUserSuccess = () => {
-        handleCloseCreateUser(); // Đóng component khi tạo user thành công
-    };
+
     return (
         <>
-            <div className="container">
-                <div className="title-manage-user">MANAGE USER</div>
-                <div onClick={handleButtonClick}>
-                    <button className="btn btn-primary ">Add new User</button>
-                </div>
-                {isCreateUserVisible && (
-                    <CreateNewUser onClose={handleCloseCreateUser}
-                        onSuccess={handleCreateUserSuccess} />
-                )}
+            <div className="content-container">
+                <div className="title-manage">
+                    <div>
+                        <button
+                            className={selectedButton === "user" ? "btn onclicked" : "btn btn-primary"}
+                            onClick={() => handleClick("user")}
+                        >
+                            MANAGE USER
+                        </button>
+                    </div>
 
-                <div className="table-user-title">Table User</div>
-                <TableUser />
+                    <div>
+                        <button
+                            className={selectedButton === "tour" ? "btn onclicked" : "btn btn-primary"}
+                            onClick={() => handleClick("tour")}
+                        >
+                            MANAGE TOUR
+                        </button>
+                    </div>
+                </div>
+
+
+                <div>
+                    <Outlet />
+                </div>
             </div>
         </>
-    )
-}
+
+    );
+};
+
 export default Admin;

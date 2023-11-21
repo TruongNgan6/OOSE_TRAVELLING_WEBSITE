@@ -16,6 +16,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Admin from "./Components/Admin/Admin";
 import ForgotPassword from "./Components/Login/ForgotPassword";
+import ManageUser from "./Components/Admin/ManageUser";
+import ManageTour from "./Components/Admin/ManageTour";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -31,7 +33,12 @@ root.render(
           <Route path="destination" element={<Destination />} />
           <Route path="login" element={<Login />} />
           <Route path="sign-up" element={<SignUp />} />
-          <Route path="admin" element={<Admin />} />
+          <Route path="admin" element={<Admin />} >
+            <Route path="manage-user" element={<ManageUser />} />
+            <Route path="manage-tour" element={<ManageTour />} />
+          </Route>
+
+
           <Route path="forgot-password" element={<ForgotPassword />} />
         </Route>
 
