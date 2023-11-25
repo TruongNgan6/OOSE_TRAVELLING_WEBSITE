@@ -15,11 +15,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin/user")
-public class AdminUser {
+public class AdminUserController {
     private final UserService userService;
 
     @Autowired
-    public AdminUser(UserService userService) {
+    public AdminUserController(UserService userService) {
         this.userService = userService;
     }
 

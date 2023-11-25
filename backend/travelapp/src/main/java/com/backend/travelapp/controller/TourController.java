@@ -29,3 +29,9 @@ public class TourController {
         return ResponseEntity.ok(tourService.getTourInfoByName(tourName));
     }
 }
+
+
+
+
+
+

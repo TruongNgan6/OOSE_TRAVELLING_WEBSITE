@@ -5,9 +5,15 @@ import com.backend.travelapp.exception.UserNotFoundException;
 import com.backend.travelapp.model.Role;
 import com.backend.travelapp.model.User;
 import com.backend.travelapp.repository.UserRepository;
+import com.backend.travelapp.request.EditProfileRequest;
+import com.backend.travelapp.request.SignUpRequest;
+import com.backend.travelapp.request.VerifyRequest;
+import com.backend.travelapp.response.EditProfileResponse;
 import com.backend.travelapp.response.GetUserResponse;
+import com.backend.travelapp.response.VerifyResponse;
 import com.backend.travelapp.secutiry.JwtService;
 import com.backend.travelapp.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,10 +23,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, JwtService jwtService) {
+    public UserServiceImpl(UserRepository userRepository, JwtService jwtService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.jwtService = jwtService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -60,5 +68,51 @@ public class UserServiceImpl implements UserService {
             userResponseList.add(u);
         }
         return userResponseList;
+    }
+
+    @Override
+    public VerifyResponse verifyUserByEmailAndPhone(VerifyRequest request) {
+        User user = userRepository.findByEmail(request.getEmail());
+        if (user == null)
+            throw new IllegalArgumentException("Your search did not return any results. Please try again with other information.");
+        if (!user.getPhone().equals(request.getPhone()))
+            throw new IllegalArgumentException("Your search did not return any results. Please try again with other information.");
+
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+
+        return VerifyResponse
+                .builder()
+                .message("Change Password Successfully!")
+                .build();
+    }
+
+    @Override
+    public EditProfileResponse editProfile(String token, EditProfileRequest request) throws UserNotFoundException {
+
+        User user = findUserProfileByJwt(token);
+        if (user == null)
+            throw new UserNotFoundException("Invalid with token! Please login again");
+
+        User tmp = userRepository.findByEmail(request.getEmail());
+        if (tmp != null)
+            throw new IllegalArgumentException("Email is existed!");
+
+        User tmp1 = userRepository.findByPhone(request.getPhone());
+        if (tmp1 != null)
+            throw new IllegalArgumentException("Phone number is existed!");
+
+        user.setEmail(request.getEmail());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setBirthDate(request.getBirthDate());
+        user.setPhone(request.getPhone());
+        user.setCountry(request.getCountry());
+        userRepository.save(user);
+
+        return EditProfileResponse
+                .builder()
+                .message("Your profile has been successfully changed.")
+                .build();
     }
 }

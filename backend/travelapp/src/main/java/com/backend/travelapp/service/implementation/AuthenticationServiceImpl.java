@@ -33,6 +33,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public SignUpResponse signUp(SignUpRequest request) {
         User user = userRepository.findByEmail(request.getEmail());
 
+        User user1 = userRepository.findByPhone(request.getPhone());
+        if (user1 != null)
+            throw new IllegalArgumentException("Phone Number is existed!!");
+
         if (user == null) {
             var tmp = User.builder()
                     .userId(0L)
