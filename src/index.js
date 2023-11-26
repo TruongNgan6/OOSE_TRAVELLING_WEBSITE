@@ -18,7 +18,9 @@ import Admin from "./Components/Admin/Admin";
 import ForgotPassword from "./Components/Login/ForgotPassword";
 import ManageUser from "./Components/Admin/ManageUser";
 import ManageTour from "./Components/Admin/ManageTour";
-
+import TourInfor from "./Components/AllTours/Tours/TourInfor/TourInfor";
+import ProcessBooking from "./Components/AllTours/Tours/TourInfor/ProcessBooking";
+import Tours from "./Components/AllTours/Tours/Tours";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
@@ -41,7 +43,9 @@ root.render(
 
           <Route path="forgot-password" element={<ForgotPassword />} />
         </Route>
-
+        <Route path="tour/:tourName" element={<TourInfor />} />
+        {/* <Route path="/tour01" element={<Tour01 />}></Route> */}
+        <Route path="/process-booking" element={<ProcessBooking />} />
         {/* </React.StrictMode> */}
       </Routes>
 

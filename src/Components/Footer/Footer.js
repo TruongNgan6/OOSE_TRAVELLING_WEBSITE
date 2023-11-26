@@ -5,7 +5,7 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div>
+    <>
       <div className="footer-component">
         <div className="footer-content">
           <div className="footer-contact-component">
@@ -92,7 +92,7 @@ const Footer = () => {
           <p>&copy; 2023 Your Company Name. All Rights Reserved.</p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

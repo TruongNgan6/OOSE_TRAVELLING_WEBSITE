@@ -56,45 +56,48 @@ const ForgotPassword = () => {
 
     return (
         <>
-            <form className="row g-3">
-                <div className="col-md-6">
-                    <label className="form-label">Email</label>
-                    <input type="text" className="form-control" value={email}
-                        onChange={(event) => {
-                            setEmail(event.target.value)
-                        }}
-                    />
-                </div>
-                <div className="col-md-6">
-                    <label className="form-label">Phone*</label>
-                    <input type="text" className="form-control" value={phone}
-                        onChange={(event) => {
-                            setPhone(event.target.value)
-                        }} />
-                </div>
-                <div className="col-md-6">
-                    <label className="form-label">Password</label>
-                    <input type="password" className="form-control" value={password}
-                        onChange={(event) => {
-                            setPassword(event.target.value)
-                        }}
-                    />
-                </div>
-                <div className="col-md-6">
-                    <label className="form-label">Confirm Password*</label>
-                    <input type="password" className="form-control" value={confirmPassword}
-                        onChange={(event) => {
-                            setConfirmPassword(event.target.value)
-                        }}
-                    />
-                </div>
-                <div className="col-md-12">
-                    <button type="button" className="btn btn-primary"
-                        onClick={() => { handleResetPassword() }}
-                    >Reset</button>
-                </div>
+            <div className="container">
+                <form className="row g-3">
+                    <div className="col-md-6">
+                        <label className="form-label">Email</label>
+                        <input type="text" className="form-control" value={email}
+                            onChange={(event) => {
+                                setEmail(event.target.value)
+                            }}
+                        />
+                    </div>
+                    <div className="col-md-6">
+                        <label className="form-label">Phone*</label>
+                        <input type="text" className="form-control" value={phone}
+                            onChange={(event) => {
+                                setPhone(event.target.value)
+                            }} />
+                    </div>
+                    <div className="col-md-6">
+                        <label className="form-label">Password</label>
+                        <input type="password" className="form-control" value={password}
+                            onChange={(event) => {
+                                setPassword(event.target.value)
+                            }}
+                        />
+                    </div>
+                    <div className="col-md-6">
+                        <label className="form-label">Confirm Password*</label>
+                        <input type="password" className="form-control" value={confirmPassword}
+                            onChange={(event) => {
+                                setConfirmPassword(event.target.value)
+                            }}
+                        />
+                    </div>
+                    <div className="col-md-12">
+                        <button type="button" className="btn btn-primary"
+                            onClick={() => { handleResetPassword() }}
+                        >Reset</button>
+                    </div>
 
-            </form>
+                </form>
+            </div>
+
         </>
     );
 };

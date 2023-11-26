@@ -2,26 +2,29 @@ import { useEffect, useState } from "react";
 import { getAllTours } from '../../Services/apiService';
 import CreateNewTour from "./CreateNewTour";
 import ModalUpdateTour from "./ModalUpdateTour";
+import ModalDeleteTour from "./ModalDeleteTour";
 
 
 const ManageTour = (props) => {
     const [listTours, setListTours] = useState([
 
         {
-            title: 't',
+            tourId: '1',
+            title: 'txdcfvghnjmk',
             description: 'f',
             imageURL: 'f',
-            price: 4,
+            price: 34345,
             location: 'd',
             duration: 'd',
             quantity: 4,
             departureDate: '04/05/2024',
         },
         {
-            title: 'r',
+            tourId: '2',
+            title: 'rsdfghjk',
             description: 'f',
             imageURL: 'f',
-            price: 4,
+            price: 40000,
             location: 'd',
             duration: 'd',
             quantity: 4,
@@ -42,13 +45,31 @@ const ManageTour = (props) => {
         // }
 
     }
-    const [showModal, setShowModal] = useState(false);
 
-    const handleShow = () => setShowModal(true);
-    const handleClose = () => setShowModal(false);
+    const [dataDelete, setdataDelete] = useState({})
+    const [dataUpdate, setdataUpdate] = useState({})
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    // const handleShow = () => setShowModal(true);
+    const handleCloseUpdateModal = () => {
+        resetUpdateData()
+        setShowUpdateModal(false)
+    };
+    const handleCloseDeleteModal = () => setShowDeleteModal(false);
 
-    const handleClickBtnUpdateTour = () => {
-        setShowModal(true)
+    const handleClickBtnUpdateTour = (tour) => {
+        setShowUpdateModal(true)
+        setdataUpdate(tour)
+    }
+
+    const handleClickBtnDeleteTour = (tour) => {
+        setShowDeleteModal(true),
+            setdataDelete(tour)
+        console.log('check tour', tour)
+    }
+
+    const resetUpdateData = () => {
+        setdataUpdate({})
     }
     return (
         <>
@@ -74,8 +95,9 @@ const ManageTour = (props) => {
                     <tbody>
                         {listTours && listTours.length > 0 &&
                             listTours.map((item, index) => {
+                                console.log('check', item)
                                 return (
-                                    <tr key={`table-users-${index}`}>
+                                    <tr key={`table-tours-${index}`}>
                                         <td>{item.tourId}</td>
                                         <td>{item.title}</td>
                                         <td>{item.price}</td>
@@ -85,17 +107,32 @@ const ManageTour = (props) => {
                                         <td>{item.departureDate}</td>
                                         <td>
                                             <button className="btn btn-warning mx-3"
-                                                onClick={handleShow}
+                                                onClick={() => { handleClickBtnUpdateTour(item) }}
                                             >Update</button>
                                             <ModalUpdateTour
-                                                show={showModal}
-                                                handleClose={handleClose} />
+                                                show={showUpdateModal}
+                                                handleClose={handleCloseUpdateModal}
+                                                dataUpdate={dataUpdate}
+                                                fetchListTours={fetchListTours}
+                                            // resetUpdateData={resetUpdateData}
+                                            />
 
 
-                                            <button className="btn btn-danger mx-3">Delete</button>
+                                            <button className="btn btn-danger mx-3"
+                                                onClick={() => { handleClickBtnDeleteTour(item) }}
+                                            >Delete</button>
+
+                                            <ModalDeleteTour
+                                                show={showDeleteModal}
+                                                handleClose={handleCloseDeleteModal}
+                                                dataDelete={dataDelete}
+                                                fetchListTours={fetchListTours}
+                                            />
                                         </td>
                                     </tr>
+
                                 )
+
                             })}
                         {listTours && listTours.length === 0 && <tr><td colSpan={7}>Not found data</td></tr>}
                     </tbody>

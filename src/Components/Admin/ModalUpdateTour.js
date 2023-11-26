@@ -1,23 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import _ from 'lodash';
+import { putUpdateTour } from '../../Services/apiService';
+import { toast } from 'react-toastify';
 
-import { FcPlus } from "react-icons/fc";
-import axios from 'axios';
-const ModalUpdateTour = (props) => {
-    const { show, handleClose } = props;
-    //const [show, setShow] = useState(false);
+const ModalUpdateTour = ({ show, handleClose, dataUpdate, fetchListTours }) => {
 
-    // const handleClose = () => {
-    //     setShow(false);
-    //     // setEmail("");
-    //     // setPassword("");
-    //     // setUsername("");
-    //     // setRole("");
-    //     // setImage("");
-    //     // setPreviewImage("")
-    // };
-    // const handleShow = () => setShow(true);
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -28,32 +17,37 @@ const ModalUpdateTour = (props) => {
     const [quantity, setQuantity] = useState();
     const [departureDate, setDepartureDate] = useState('');
 
-    // const handleUploadImage = (event) => {
-    //     if (event.target && event.target.files && event.target.files[0]) {
-    //         setPreviewImage(URL.createObjectURL(event.target.files[0]))
-    //         setImage(event.target.files[0])
-    //     } else {
 
-    //     }
+    useEffect(() => {
+        if (!_.isEmpty(dataUpdate)) {
+            //update
+            setTitle(dataUpdate.title)
+            setDescription(dataUpdate.description)
+            setImageURL(dataUpdate.imageURL)
+            setPrice(dataUpdate.price)
+            setLocation(dataUpdate.location)
+            setDuration(dataUpdate.duration)
+            setQuantity(dataUpdate.quantity)
+            setDepartureDate(dataUpdate.departureDate)
+        }
+
+    }, [dataUpdate])
 
 
-    // }
+    const handleSubmitUpdateTour = async () => {
+        let data = await putUpdateTour(dataUpdate.tourId, title, description, imageURL, price, location, duration, quantity, departureDate)
+        console.log("check res", data)
+        if (data && data.message === "Sign Up Successfully") {
+            toast.success(data.message);
+            // handleSuccess();
+            handleClose()
+            await fetchListTours()
 
-    // const handleSubmitCreateUser = async () => {
-
-
-    //     //call apis
-
-    //     const data = new FormData();
-    //     data.append('email', email);
-    //     data.append('password', password);
-    //     data.append('username', username);
-    //     data.append('role', role);
-    //     data.append('userImage', image);
-
-    //     let res = await axios.post('http://localhost:8081/api/v1/participant', data)
-    //     console.log("check res", res)
-    // }
+        }
+        if (data && data.errCode === 0) {
+            toast.error(data.errMessage);
+        }
+    }
 
     return (
         <>
@@ -66,7 +60,7 @@ const ModalUpdateTour = (props) => {
                 onHide={handleClose}
                 size="xl"
                 backdrop='static'
-                className='modal-add-user'
+                className='modal-update-tour'
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Update Tour</Modal.Title>
@@ -137,7 +131,7 @@ const ModalUpdateTour = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={() => { handleSubmitUpdateTour() }}>
                         Save
                     </Button>
                 </Modal.Footer>

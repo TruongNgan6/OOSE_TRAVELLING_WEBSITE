@@ -18,14 +18,7 @@ const CreateNewUser = (onClose, onSuccess) => {
     const [phone, setPhone] = useState("");
     const [country, setCountry] = useState("");
 
-    // const handleClose = () => {
-    //     onClose(); // Gọi hàm đóng component từ prop
-    // };
 
-    // const handleSuccess = () => {
-    //     onSuccess(); // Gọi hàm khi tạo user thành công từ prop
-    //     handleClose(); // Đóng component
-    // };
     const navigate = useNavigate();
 
     const validateEmail = (email) => {

@@ -57,11 +57,11 @@
 
 .content-container button:hover {
     background-color: #f26627 !important;
-    font-weight: 700;
+    /* font-weight: 700; */
 }
 
 .content-container .onclicked {
     background-color: #f26627 !important;
     color: aliceblue !important;
-    font-weight: 700 !important;
+    /* font-weight: 700 !important; */
 }

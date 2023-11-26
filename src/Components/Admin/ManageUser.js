@@ -7,16 +7,16 @@ const ManageUser = (props) => {
     const [listUsers, setListUsers] = useState([
         {
             userId: '1',
+            email: 'fd',
             firstName: 'e',
             lastName: 'r',
-            email: 'fd',
             role: 'we'
         },
         {
             userId: '2',
+            email: 'fd',
             firstName: 'e',
             lastName: 'r',
-            email: 'fd',
             role: 'werd'
         }
 
@@ -26,7 +26,11 @@ const ManageUser = (props) => {
     const [dataDelete, setdataDelete] = useState({})
     const [showModal, setShowModal] = useState(false);
 
-    const handleShow = () => setShowModal(true);
+    const handleDeleteUser = (user) => {
+        setShowModal(true),
+            setdataDelete(user)
+        console.log('check user', user)
+    };
     const handleClose = () => setShowModal(false);
 
 
@@ -73,18 +77,24 @@ const ManageUser = (props) => {
                                 return (
                                     <tr key={`table-users-${index}`}>
                                         <td>{item.userId}</td>
+                                        <td>{item.email}</td>
                                         <td>{item.firstName}</td>
                                         <td>{item.lastName}</td>
-                                        <td>{item.email}</td>
                                         <td>{item.role}</td>
                                         <td>
                                             <button className="btn btn-danger mx-3"
-                                                onClick={handleShow}
+                                                onClick={() => {
+                                                    handleDeleteUser(item);
+                                                    console.log('user', item.email)
+                                                }
+                                                }
+
                                             >Delete</button>
                                             <ModalDeleteUser
                                                 show={showModal}
-                                                handleClose={handleClose} />
-
+                                                handleClose={handleClose}
+                                                dataDelete={dataDelete}
+                                                fetchListUsesrs={fetchListUsesrs} />
                                         </td>
                                     </tr>
                                 )
@@ -94,7 +104,7 @@ const ManageUser = (props) => {
                 </table>
 
                 {/* <ModalDeleteUser /> */}
-            </div>
+            </div >
 
         </>
     )

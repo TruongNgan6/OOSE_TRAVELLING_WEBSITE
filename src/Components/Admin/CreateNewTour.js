@@ -14,6 +14,15 @@ const CreateNewTour = () => {
     const [quantity, setQuantity] = useState();
     const [departureDate, setDepartureDate] = useState('');
 
+    console.log('check data', title,
+        description,
+        imageURL,
+        price,
+        location,
+        duration,
+        quantity,
+        departureDate)
+
     const handleSubmit = async (event) => {
         // event.preventDefault();
         // // Gửi dữ liệu đến backend hoặc thực hiện các tác vụ khác tại đây
@@ -105,7 +114,9 @@ const CreateNewTour = () => {
                         onChange={(event) => setDepartureDate(event.target.value)}
                     />
                 </div>
-                <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Add Tour</button>
+                <button type="button" className="btn btn-primary"
+                    onClick={() => { handleSubmit(); console.log('checkdata',) }}
+                >Add</button>
             </form>
         </div>
     );

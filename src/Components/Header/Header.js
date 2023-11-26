@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
+    <>
       <div className="header-component">
         <div className="contact-component">
           <div className="content-left">
@@ -37,12 +37,12 @@ const Header = () => {
           </div>
           <div className="content-right">
             <div className="login">
-              <FiLogIn /> <NavLink to="/login" activeClassName="active-link">
+              <FiLogIn /> <NavLink to="/login" className="active-link">
                 Login
               </NavLink>
             </div>
             <div className="sign-up">
-              <BiUser /> <NavLink to="/sign-up" activeClassName="active-link">
+              <BiUser /> <NavLink to="/sign-up" className="active-link">
                 Sign Up
               </NavLink>
             </div>
@@ -76,7 +76,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

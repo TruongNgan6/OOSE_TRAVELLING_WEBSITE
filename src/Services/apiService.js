@@ -94,7 +94,42 @@ const getAllTours = () => {
     return axios.get('api/all-tour', { headers: headers })
 }
 
+const deleteUser = (userId) => {
+    return axios.delete('fghj', { data: { userId: userId } })
+}
+
+const deleteTour = (tourId) => {
+    const token = localStorage.getItem("token");
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+    return axios.delete('fghj', { data: { tourId: tourId } }, { headers: headers })
+}
+
+const putUpdateTour = (tourId, title, description, imageURL, price, location, duration, quantity, departureDate) => {
+    //submit data
+    const token = localStorage.getItem("token");
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+
+    return axios.put('auth/signup', { data: { tourId: tourId } }, {
+        title: title,
+        description: description,
+        imageURL: imageURL,
+        price: price,
+        location: location,
+        duration: duration,
+        quantity: quantity,
+        departureDate: departureDate
+    }, { headers: headers });
+}
+
+const getTourInfoByName = (tourName) => {
+    return axios.get(`/api/getInforTourByTourName/${tourName}`);
+}
+
 export {
     postSignUp, postLogin, getAllUsers, postCreateNewUser, postUpdatePassword,
-    postCreateNewTour, getAllTours
+    postCreateNewTour, getAllTours, deleteUser, deleteTour, putUpdateTour, getTourInfoByName
 }

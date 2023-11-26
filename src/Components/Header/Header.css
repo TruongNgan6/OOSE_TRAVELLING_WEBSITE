@@ -1,4 +1,4 @@
-.contact-component{
+.contact-component {
     display: flex;
     height: 3rem;
     width: 100%;
@@ -8,63 +8,64 @@
 
 .content-left,
 .content-middle,
-.content-right{
+.content-right {
     display: flex;
     padding: 1rem;
 }
 
-.content-left{
+.content-left {
     width: 35%;
     height: 100%;
     font-size: 0.9rem;
 }
 
-.phone{
+.phone {
     margin-right: 1.5rem;
 }
 
-.content-middle{
+.content-middle {
     width: 40%;
     height: 100%;
     justify-content: flex-end;
 }
 
-.icon-content-middle{
+.icon-content-middle {
     margin-right: 1.5rem;
     cursor: pointer;
 }
 
-.icon-content-middle:hover{
+.icon-content-middle:hover {
     color: #1e354c;
 }
 
-.content-right{
+.content-right {
     width: 25%;
     height: 100%;
     justify-content: flex-end;
 }
 
 .login,
-.sign-up{
+.sign-up {
     margin-right: 1.5rem;
     font-weight: 600;
     font-size: 0.9rem;
     cursor: pointer;
+
 }
 
 .login:hover,
-.sign-up:hover{
+.sign-up:hover {
     color: #1e354c;
 }
 
-.navbar-component{
+.navbar-component {
     height: 100px;
     /* border: 1px solid orange; */
     width: 100%;
     display: flex;
 }
 
-.logo{
+.logo {
     display: flex;
     margin-left: 10rem;
     width: 30%;
@@ -74,8 +75,8 @@
     color: #1e354c;
 }
 
-.navbar-menu{
-    width: 70%; 
+.navbar-menu {
+    width: 70%;
     align-items: center;
     justify-content: flex-end;
     display: flex;
@@ -85,7 +86,7 @@
 
 .navbar-menu a {
     color: #95999f;
-   
+
     text-decoration: none;
     font-weight: 600;
     font-size: 1.2rem;
@@ -97,3 +98,6 @@
     border-bottom: 0.1rem solid #f26627;
 }
 
+.active-link {
+    text-decoration: none;
+}
