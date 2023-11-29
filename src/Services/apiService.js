@@ -103,8 +103,11 @@ const deleteTour = (tourId) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     };
-    return axios.delete(`/api/admin/tour/update/${tourId}`, { headers: headers })
-}
+    return axios.delete(`api/admin/tour/delete/${tourId}`, {
+        headers: headers,
+        data: { tourId: tourId }
+    });
+};
 
 const putUpdateTour = (tourId, title, description, imageURL, price, location, duration, quantity, departureDate) => {
     //submit data
@@ -127,7 +130,7 @@ const putUpdateTour = (tourId, title, description, imageURL, price, location, du
 }
 
 const getTourInfoByName = (tourName) => {
-    return axios.get(`/api/getInforTourByTourName/${tourName}`, { tourName: tourName });
+    return axios.get(`/api/tour/${tourName}`, { tourName: tourName });
 }
 
 const createOrder = (
@@ -142,7 +145,7 @@ const createOrder = (
     const headers = {
         'Authorization': `Bearer ${token}`
     };
-    return axios.post('/api/order', {
+    return axios.post('api/order', {
         numberOfPeople: numberOfPeople,
         numberOfRooms: numberOfRooms,
         travellerDetails: travellerDetails,
@@ -150,7 +153,9 @@ const createOrder = (
         billingDetail: billingDetail,
         notes: notes,
         tourId: tourId
-    }, { headers: headers });
+    }, {
+        headers: headers
+    });
 }
 
 const createReview = (tourId, rating, review) => {
@@ -158,15 +163,15 @@ const createReview = (tourId, rating, review) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     };
-    return axios.post('/api/review', {
+    return axios.post('api/review', {
         tourId: tourId,
         rating: rating,
         review: review
     }, { headers: headers });
-}
+};
 
 const getReviewResponse = (tourId) => {
-    return axios.get(`/api/review/tour/${tourId}`, { tourId: tourId });
+    return axios.get(`api/review/tour/${tourId}`, { tourId: tourId });
 }
 
 

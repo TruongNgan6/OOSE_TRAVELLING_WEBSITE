@@ -8,83 +8,83 @@ import ModalDeleteTour from "./ModalDeleteTour";
 const ManageTour = (props) => {
     const [listTours, setListTours] = useState([
 
-        {
-            tourId: '1',
-            title: 'ha noi',
-            description: 'f',
-            imageURL: 'f',
-            price: 34345,
-            location: 'd',
-            duration: 'd',
-            quantity: 4,
-            departureDate: '04/05/2024',
-        },
-        {
-            tourId: '2',
-            title: 'tam ky',
-            description: 'f',
-            imageURL: 'f',
-            price: 40000,
-            location: 'd',
-            duration: 'd',
-            quantity: 4,
-            departureDate: '04/05/2024',
-        },
-        {
-            tourId: '3',
-            title: 'quang nam',
-            description: 'f',
-            imageURL: 'f',
-            price: 40000,
-            location: 'd',
-            duration: 'd',
-            quantity: 4,
-            departureDate: '04/05/2024',
-        },
-        {
-            tourId: '4',
-            title: 'da nang',
-            description: 'f',
-            imageURL: 'f',
-            price: 40000,
-            location: 'd',
-            duration: 'd',
-            quantity: 4,
-            departureDate: '04/05/2024',
-        },
-        {
-            tourId: '5',
-            title: 'hoi an',
-            description: 'f',
-            imageURL: 'f',
-            price: 40000,
-            location: 'd',
-            duration: 'd',
-            quantity: 4,
-            departureDate: '04/05/2024',
-        },
-        {
-            tourId: '6',
-            title: 'vung tau',
-            description: 'f',
-            imageURL: 'f',
-            price: 40000,
-            location: 'd',
-            duration: 'd',
-            quantity: 4,
-            departureDate: '04/05/2024',
-        },
-        {
-            tourId: '7',
-            title: 'khanh hoa',
-            description: 'f',
-            imageURL: 'f',
-            price: 40000,
-            location: 'd',
-            duration: 'd',
-            quantity: 4,
-            departureDate: '04/05/2024',
-        }
+        // {
+        //     tourId: '1',
+        //     title: 'ha noi',
+        //     description: 'f',
+        //     imageURL: 'f',
+        //     price: 34345,
+        //     location: 'd',
+        //     duration: 'd',
+        //     quantity: 4,
+        //     departureDate: '04/05/2024',
+        // },
+        // {
+        //     tourId: '2',
+        //     title: 'tam ky',
+        //     description: 'f',
+        //     imageURL: 'f',
+        //     price: 40000,
+        //     location: 'd',
+        //     duration: 'd',
+        //     quantity: 4,
+        //     departureDate: '04/05/2024',
+        // },
+        // {
+        //     tourId: '3',
+        //     title: 'quang nam',
+        //     description: 'f',
+        //     imageURL: 'f',
+        //     price: 40000,
+        //     location: 'd',
+        //     duration: 'd',
+        //     quantity: 4,
+        //     departureDate: '04/05/2024',
+        // },
+        // {
+        //     tourId: '4',
+        //     title: 'da nang',
+        //     description: 'f',
+        //     imageURL: 'f',
+        //     price: 40000,
+        //     location: 'd',
+        //     duration: 'd',
+        //     quantity: 4,
+        //     departureDate: '04/05/2024',
+        // },
+        // {
+        //     tourId: '5',
+        //     title: 'hoi an',
+        //     description: 'f',
+        //     imageURL: 'f',
+        //     price: 40000,
+        //     location: 'd',
+        //     duration: 'd',
+        //     quantity: 4,
+        //     departureDate: '04/05/2024',
+        // },
+        // {
+        //     tourId: '6',
+        //     title: 'vung tau',
+        //     description: 'f',
+        //     imageURL: 'f',
+        //     price: 40000,
+        //     location: 'd',
+        //     duration: 'd',
+        //     quantity: 4,
+        //     departureDate: '04/05/2024',
+        // },
+        // {
+        //     tourId: '7',
+        //     title: 'khanh hoa',
+        //     description: 'f',
+        //     imageURL: 'f',
+        //     price: 40000,
+        //     location: 'd',
+        //     duration: 'd',
+        //     quantity: 4,
+        //     departureDate: '04/05/2024',
+        // }
     ])
 
 
@@ -118,10 +118,10 @@ const ManageTour = (props) => {
     }
 
     const handleClickBtnDeleteTour = (tour) => {
-        setShowDeleteModal(true),
-            setdataDelete(tour)
-        console.log('check tour', tour)
-    }
+        setShowDeleteModal(true);
+        setdataDelete(tour);
+        console.log('check tour', tour);
+    };
 
     const resetUpdateData = () => {
         setdataUpdate({})
@@ -152,7 +152,7 @@ const ManageTour = (props) => {
                     <tbody>
                         {listTours && listTours.length > 0 &&
                             listTours.map((item, index) => {
-                                console.log('check', item)
+                                console.log('check', item.quantity)
                                 return (
                                     <tr key={`table-tours-${index}`}>
                                         <td>{item.tourId}</td>

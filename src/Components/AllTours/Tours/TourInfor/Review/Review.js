@@ -37,7 +37,7 @@ const Review = () => {
 
         let data = await createReview(tourId, formData.rating, formData.review);
 
-        if (data && data.message === "Create review successfully") {
+        if (data && data.message === "Created Successfully") {
             toast.success(data.message);
             // handleSuccess();
             // Đặt lại trạng thái form sau khi đã gửi đi

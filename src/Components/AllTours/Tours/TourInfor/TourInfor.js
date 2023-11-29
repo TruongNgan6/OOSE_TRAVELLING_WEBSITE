@@ -30,18 +30,18 @@ const TourInfor = () => {
 
 
   const [tourInfo, setTourInfo] = useState(
-    // null
-    {
-      tourId: 2,
-      title: 'tam ky',
-      description: 'f',
-      imageURL: 'f',
-      price: 40000,
-      location: 'd',
-      duration: 'd',
-      quantity: 4,
-      departureDate: '04/05/2024',
-    }
+    {}
+    // {
+    //   tourId: 2,
+    //   title: 'tam ky',
+    //   description: 'f',
+    //   imageURL: 'f',
+    //   price: 40000,
+    //   location: 'd',
+    //   duration: 'd',
+    //   quantity: 4,
+    //   departureDate: '04/05/2024',
+    // }
   );
   console.log("check useparam", tourName)
 
@@ -49,14 +49,25 @@ const TourInfor = () => {
     fetchTourInfo();
   }, [tourName]);
 
+  // const fetchTourInfo = async () => {
+  //   let res = await getTourInfoByName(tourName);
+  //   // if (res.EC === 0) {
+  //   setTourInfo(res)
+  //   // }
+
+  // }
+  // localStorage.setItem('bookingInfo', JSON.stringify({ numberOfPeople, numberOfRooms, tourId: tourInfo.tourId, title: tourInfo.title }));
+
   const fetchTourInfo = async () => {
     let res = await getTourInfoByName(tourName);
     // if (res.EC === 0) {
-    setTourInfo(res)
+    setTourInfo(res);
     // }
 
-  }
-  localStorage.setItem('bookingInfo', JSON.stringify({ numberOfPeople, numberOfRooms, tourId: tourInfo.tourId, title: tourInfo.title }));
+    localStorage.setItem('bookingInfo', JSON.stringify({ numberOfPeople, numberOfRooms, tourId: res.tourId, title: res.title }));
+  };
+
+  console.log('check res ', tourInfo)
   return (
     <div>
       <Header />
