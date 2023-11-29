@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { postCreateNewTour } from '../../Services/apiService';
 import { Navigate, useNavigate } from "react-router-dom";
 
-const CreateNewTour = () => {
+const CreateNewTour = (fetchListTours) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [imageURL, setImageURL] = useState('');
@@ -14,14 +14,7 @@ const CreateNewTour = () => {
     const [quantity, setQuantity] = useState();
     const [departureDate, setDepartureDate] = useState('');
 
-    console.log('check data', title,
-        description,
-        imageURL,
-        price,
-        location,
-        duration,
-        quantity,
-        departureDate)
+
 
     const handleSubmit = async (event) => {
         // event.preventDefault();
@@ -49,7 +42,7 @@ const CreateNewTour = () => {
         console.log("check res", data)
         if (data && data.message === "Sign Up Successfully") {
             toast.success(data.message);
-
+            await fetchListTours()
         }
         if (data && data.errCode === 0) {
             toast.error(data.errMessage);

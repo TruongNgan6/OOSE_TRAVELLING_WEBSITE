@@ -13,7 +13,7 @@ const ModalDeleteTour = ({ show, handleClose, dataDelete, fetchListTours }) => {
 
         let data = await deleteTour(dataDelete.tourId);
         console.log("check res", data)
-        if (data && data.message === "Sign Up Successfully") {
+        if (data && data.message === "Deleted tour Successfully") {
             toast.success(data.message);
             // handleSuccess();
             handleClose()

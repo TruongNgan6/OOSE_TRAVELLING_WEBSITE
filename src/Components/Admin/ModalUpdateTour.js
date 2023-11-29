@@ -37,7 +37,8 @@ const ModalUpdateTour = ({ show, handleClose, dataUpdate, fetchListTours }) => {
     const handleSubmitUpdateTour = async () => {
         let data = await putUpdateTour(dataUpdate.tourId, title, description, imageURL, price, location, duration, quantity, departureDate)
         console.log("check res", data)
-        if (data && data.message === "Sign Up Successfully") {
+
+        if (data && data.message === "Updated tour Successfully") {
             toast.success(data.message);
             // handleSuccess();
             handleClose()

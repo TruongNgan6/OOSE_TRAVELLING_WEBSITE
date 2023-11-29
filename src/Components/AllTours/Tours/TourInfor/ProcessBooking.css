@@ -1,0 +1,35 @@
+.title {
+    padding-bottom: 50px;
+    font-size: 30px;
+    font-weight: 600;
+    padding-top: 30px;
+}
+
+.checkbox-billing-details {
+    padding-top: 30px;
+}
+
+.process-content-up {
+    position: relative;
+}
+
+.process-content-up-title {
+    position: absolute;
+    width: 100%;
+    top: 35%;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 700;
+    color: aliceblue;
+}
+
+.container button {
+    margin-top: 50px !important;
+    background-color: brown !important;
+    border: none !important;
+    font-weight: 600;
+}
+
+.container button:hover {
+    background-color: rgb(245, 55, 55) !important;
+}

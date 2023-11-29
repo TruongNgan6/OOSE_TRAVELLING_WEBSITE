@@ -6,13 +6,13 @@ import { toast } from 'react-toastify';
 
 const ModalDeleteUser = ({ show, handleClose, dataDelete, fetchListUsesrs }) => {
 
-    console.log('data delete', dataDelete)
+
 
     const handleSubmitDeleteUser = async () => {
 
 
         let data = await deleteUser(dataDelete.userId);
-        console.log("check res", data)
+
         if (data && data.message === "Sign Up Successfully") {
             toast.success(data.message);
             // handleSuccess();

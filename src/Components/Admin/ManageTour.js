@@ -10,7 +10,7 @@ const ManageTour = (props) => {
 
         {
             tourId: '1',
-            title: 'txdcfvghnjmk',
+            title: 'ha noi',
             description: 'f',
             imageURL: 'f',
             price: 34345,
@@ -21,7 +21,62 @@ const ManageTour = (props) => {
         },
         {
             tourId: '2',
-            title: 'rsdfghjk',
+            title: 'tam ky',
+            description: 'f',
+            imageURL: 'f',
+            price: 40000,
+            location: 'd',
+            duration: 'd',
+            quantity: 4,
+            departureDate: '04/05/2024',
+        },
+        {
+            tourId: '3',
+            title: 'quang nam',
+            description: 'f',
+            imageURL: 'f',
+            price: 40000,
+            location: 'd',
+            duration: 'd',
+            quantity: 4,
+            departureDate: '04/05/2024',
+        },
+        {
+            tourId: '4',
+            title: 'da nang',
+            description: 'f',
+            imageURL: 'f',
+            price: 40000,
+            location: 'd',
+            duration: 'd',
+            quantity: 4,
+            departureDate: '04/05/2024',
+        },
+        {
+            tourId: '5',
+            title: 'hoi an',
+            description: 'f',
+            imageURL: 'f',
+            price: 40000,
+            location: 'd',
+            duration: 'd',
+            quantity: 4,
+            departureDate: '04/05/2024',
+        },
+        {
+            tourId: '6',
+            title: 'vung tau',
+            description: 'f',
+            imageURL: 'f',
+            price: 40000,
+            location: 'd',
+            duration: 'd',
+            quantity: 4,
+            departureDate: '04/05/2024',
+        },
+        {
+            tourId: '7',
+            title: 'khanh hoa',
             description: 'f',
             imageURL: 'f',
             price: 40000,
@@ -76,7 +131,9 @@ const ManageTour = (props) => {
             <div className="container">
                 <hr />
                 <div className="add-new-title">ADD NEW TOUR</div>
-                <CreateNewTour />
+                <CreateNewTour
+                    fetchListTours={fetchListTours}
+                />
                 <hr />
                 <div className="table-title">TABLE TOURS</div>
                 <table className="table table-hover table-bordered ">

@@ -19,10 +19,30 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getTourInfoByName } from "../../../../Services/apiService";
 
+import ReviewDisplay from "./Review/ReviewDisplay";
+import Review from "./Review/Review";
+
 
 const TourInfor = () => {
   const { tourName } = useParams();
-  const [tourInfo, setTourInfo] = useState(null);
+  const [numberOfPeople, setNumberOfPeople] = useState(1); // Khởi tạo giá trị mặc định là 1
+  const [numberOfRooms, setNumberOfRooms] = useState(1); // Khởi tạo giá trị mặc định là 1
+
+
+  const [tourInfo, setTourInfo] = useState(
+    // null
+    {
+      tourId: 2,
+      title: 'tam ky',
+      description: 'f',
+      imageURL: 'f',
+      price: 40000,
+      location: 'd',
+      duration: 'd',
+      quantity: 4,
+      departureDate: '04/05/2024',
+    }
+  );
   console.log("check useparam", tourName)
 
   useEffect(() => {
@@ -36,7 +56,7 @@ const TourInfor = () => {
     // }
 
   }
-
+  localStorage.setItem('bookingInfo', JSON.stringify({ numberOfPeople, numberOfRooms, tourId: tourInfo.tourId, title: tourInfo.title }));
   return (
     <div>
       <Header />
@@ -66,7 +86,7 @@ const TourInfor = () => {
             </div>
             <div className="tour01-component-left-detail-content">
               <div className="tour01-component-left-detail-content-title">
-                Dubai - All Stunning Place
+                {tourInfo.title}
               </div>
               <div className="tour01-component-left-detail-content-rating">
                 <AiFillStar />
@@ -77,10 +97,10 @@ const TourInfor = () => {
               </div>
               <div className="tour01-component-left-detail-content-day-maxpeople-wifi">
                 <div className="tour01-component-left-detail-content-day">
-                  <LuTimerReset className="time-icon" /> 8 Hours
+                  <LuTimerReset className="time-icon" />8 Hours
                 </div>
                 <div className="tour01-component-left-detail-content-maxpeople">
-                  <IoPeopleOutline className="time-icon" /> Max people: 22
+                  <IoPeopleOutline className="time-icon" />Max People: {tourInfo.quantity}
                 </div>
                 <div className="tour01-component-left-detail-content-wifi">
                   <AiOutlineWifi className="time-icon" /> Wifi Available
@@ -89,19 +109,19 @@ const TourInfor = () => {
               <div className="tour01-component-left-detail-content-calendar-minAge-pickUp">
                 <div className="tour01-component-left-detail-content-calendar">
                   <AiTwotoneCalendar className="time-icon" />
-                  Jan 18’
+                  {tourInfo.departureDate}
                 </div>
                 <div className="tour01-component-left-detail-content-minAge">
                   <IoPersonOutline className="time-icon" /> Min Age : 12+
                 </div>
                 <div className="tour01-component-left-detail-content-pickUp">
-                  <IoLocateSharp className="time-icon" /> Pickup: Airpot
+                  <IoLocateSharp className="time-icon" /> Pickup: Airport
                 </div>
               </div>
             </div>
 
             <div className="tour01-component-left-detail-detail">
-              A wonderful serenity has taken possession of my entire soul, like
+              {/* A wonderful serenity has taken possession of my entire soul, like
               these sweet mornings of spring which I enjoy with my whole heart.
               I am alone, and feel the charm of existence in this spot, which
               was created for the bliss of souls like mine. I am so happy, my
@@ -114,7 +134,9 @@ const TourInfor = () => {
               bad Comma wild Question Marks and devious Semikoli, but the Little
               Blind Text didn’t listen. She packed her seven versalia, put her
               initial into the belt and made herself on the way. When she
-              reached the first hills of t
+              reached the first hills of t */}
+
+              {tourInfo.description}
             </div>
 
             <div className="tour01-component-left-detail-list">
@@ -193,23 +215,31 @@ const TourInfor = () => {
               </div>
               <div className="tour01-component-left-detail-list-complementaries"></div>
             </div>
+            <div>
+              <hr></hr>
+              <Review />
+
+              <ReviewDisplay />
+            </div>
           </div>
           <div className="tour01-component-right">
             <div className="tour01-component-right-booking-process-form">
               <div className="tour01-component-right-booking-process-price">
                 <IoPricetagsOutline />
-                <span>$1200</span>
+                <span> ${tourInfo.price}</span>
               </div>
               <div className="tour01-component-right-booking-process-title">
                 Booking Form
               </div>
               <div className="tour01-component-right-booking-process-calendar">
                 <AiTwotoneCalendar className="time-icon" />
-                <input type="date"></input>
+                {/* <input type="date"></input> */}
+                <span> {tourInfo.departureDate}</span>
               </div>
               <div className="tour01-component-right-booking-process-bedroom">
                 <FaBed className="time-icon" />
-                <select>
+                <label>People: </label>
+                <select value={numberOfPeople} onChange={(event) => { setNumberOfPeople(event.target.value) }}>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -217,9 +247,8 @@ const TourInfor = () => {
                 </select>
               </div>
               <div className="tour01-component-right-booking-process-room">
-                Room 1:
-                <select>
-                  <option>Adult</option>
+                <label>Rooms: </label>
+                <select value={numberOfRooms} onChange={(event) => { setNumberOfRooms(event.target.value) }}>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -227,7 +256,14 @@ const TourInfor = () => {
                 </select>
               </div>
               <div className="tour01-component-right-booking-process-button">
-                <NavLink to="/process-booking">Process Booking</NavLink>
+                <NavLink
+                  to="/process-booking"
+                // to={{
+                //   pathname: "/process-booking",
+                //   search: `?numberOfPeople=${numberOfPeople}&numberOfRooms=${numberOfRooms}&tourId=${tourInfo.tourId}`
+                // }
+                // }
+                >Process Booking</NavLink>
               </div>
             </div>
           </div>

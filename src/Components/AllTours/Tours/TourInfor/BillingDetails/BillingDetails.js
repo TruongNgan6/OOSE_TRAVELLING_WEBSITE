@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import "./ContactDetails.css";
 import popularTourImage from "../../../../../Assets/Images/populartours01.jpg";
-
-const ContactDetails = ({ handleContactDetailfromChild }) => {
-    const [contactDetailfromChild, setContactDetailfromChild] = useState({
+import { useEffect } from "react";
+const BillingDetails = ({ handleBillingDetailfromChild, contactDetail, sameAsContactDetails }) => {
+    const [billingDetailfromChild, setBillingDetailfromChild] = useState({
         firstName: '',
         lastName: '',
         email: '',
@@ -12,16 +11,25 @@ const ContactDetails = ({ handleContactDetailfromChild }) => {
         address: ''
     })
 
+
+
     const handleInputChange = (event, fieldName) => {
-        setContactDetailfromChild({
-            ...contactDetailfromChild,
+        setBillingDetailfromChild({
+            ...billingDetailfromChild,
             [fieldName]: event.target.value,
         });
 
     };
-    handleContactDetailfromChild(contactDetailfromChild)
+    handleBillingDetailfromChild(billingDetailfromChild)
+    useEffect(() => {
+        // Kiểm tra nếu ô checkbox được chọn, cập nhật Billing Details từ Contact Details
+        if (sameAsContactDetails) {
+            setBillingDetailfromChild(contactDetail);
+            handleBillingDetailfromChild(contactDetail);
+        }
+    }, [sameAsContactDetails, contactDetail]);
 
-    console.log('chcec', contactDetailfromChild.firstName)
+
     return (
         <>
             <div className="col-md-6">
@@ -29,7 +37,7 @@ const ContactDetails = ({ handleContactDetailfromChild }) => {
                 <input
                     type="text"
                     className="form-control"
-                    value={contactDetailfromChild.firstName}
+                    value={billingDetailfromChild.firstName}
 
                     onChange={(event) => handleInputChange(event, 'firstName')}
                 />
@@ -39,7 +47,7 @@ const ContactDetails = ({ handleContactDetailfromChild }) => {
                 <input
                     type="text"
                     className="form-control"
-                    value={contactDetailfromChild.lastName}
+                    value={billingDetailfromChild.lastName}
                     onChange={(event) => handleInputChange(event, 'lastName')}
                 />
             </div>
@@ -48,7 +56,7 @@ const ContactDetails = ({ handleContactDetailfromChild }) => {
                 <input
                     type="email"
                     className="form-control"
-                    value={contactDetailfromChild.email}
+                    value={billingDetailfromChild.email}
                     onChange={(event) => handleInputChange(event, 'email')}
                 />
             </div>
@@ -57,7 +65,7 @@ const ContactDetails = ({ handleContactDetailfromChild }) => {
                 <input
                     type="text"
                     className="form-control"
-                    value={contactDetailfromChild.phone}
+                    value={billingDetailfromChild.phone}
                     onChange={(event) => handleInputChange(event, 'phone')}
                 />
             </div>
@@ -66,7 +74,7 @@ const ContactDetails = ({ handleContactDetailfromChild }) => {
                 <input
                     type="text"
                     className="form-control"
-                    value={contactDetailfromChild.country}
+                    value={billingDetailfromChild.country}
                     onChange={(event) => handleInputChange(event, 'country')}
                 />
             </div>
@@ -75,15 +83,14 @@ const ContactDetails = ({ handleContactDetailfromChild }) => {
                 <input
                     type="text"
                     className="form-control"
-                    value={contactDetailfromChild.address}
+                    value={billingDetailfromChild.address}
                     onChange={(event) => handleInputChange(event, 'address')}
                 />
             </div>
-
 
 
         </>
     );
 };
 
-export default ContactDetails;
+export default BillingDetails;

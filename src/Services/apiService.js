@@ -71,7 +71,7 @@ const postCreateNewTour = (title,
     };
 
     //submit data
-    return axios.post('auth/create-new-tour', {
+    return axios.post('/api/admin/tour/create', {
         title: title,
         description: description,
         imageURL: imageURL,
@@ -85,17 +85,17 @@ const postCreateNewTour = (title,
 
 const getAllTours = () => {
     // Định nghĩa header với token
-    const token = localStorage.getItem("token");
-    const headers = {
-        'Authorization': `Bearer ${token}`
-    };
+    // const token = localStorage.getItem("token");
+    // const headers = {
+    //     'Authorization': `Bearer ${token}`
+    // };
 
     // Gửi yêu cầu GET với Axios và headers
-    return axios.get('api/all-tour', { headers: headers })
+    return axios.get('/api/tour')
 }
 
 const deleteUser = (userId) => {
-    return axios.delete('fghj', { data: { userId: userId } })
+    return axios.delete(`/api/admin/tour/update/${userId}`)
 }
 
 const deleteTour = (tourId) => {
@@ -103,7 +103,7 @@ const deleteTour = (tourId) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     };
-    return axios.delete('fghj', { data: { tourId: tourId } }, { headers: headers })
+    return axios.delete(`/api/admin/tour/update/${tourId}`, { headers: headers })
 }
 
 const putUpdateTour = (tourId, title, description, imageURL, price, location, duration, quantity, departureDate) => {
@@ -113,7 +113,8 @@ const putUpdateTour = (tourId, title, description, imageURL, price, location, du
         'Authorization': `Bearer ${token}`
     };
 
-    return axios.put('auth/signup', { data: { tourId: tourId } }, {
+    return axios.put(`/api/admin/tour/update/${tourId}`, {
+        tourId: tourId,
         title: title,
         description: description,
         imageURL: imageURL,
@@ -126,10 +127,51 @@ const putUpdateTour = (tourId, title, description, imageURL, price, location, du
 }
 
 const getTourInfoByName = (tourName) => {
-    return axios.get(`/api/getInforTourByTourName/${tourName}`);
+    return axios.get(`/api/getInforTourByTourName/${tourName}`, { tourName: tourName });
 }
+
+const createOrder = (
+    numberOfPeople,
+    numberOfRooms,
+    travellerDetails,
+    contactDetail,
+    billingDetail,
+    notes,
+    tourId) => {
+    const token = localStorage.getItem("token");
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+    return axios.post('/api/order', {
+        numberOfPeople: numberOfPeople,
+        numberOfRooms: numberOfRooms,
+        travellerDetails: travellerDetails,
+        contactDetail: contactDetail,
+        billingDetail: billingDetail,
+        notes: notes,
+        tourId: tourId
+    }, { headers: headers });
+}
+
+const createReview = (tourId, rating, review) => {
+    const token = localStorage.getItem("token");
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+    return axios.post('/api/review', {
+        tourId: tourId,
+        rating: rating,
+        review: review
+    }, { headers: headers });
+}
+
+const getReviewResponse = (tourId) => {
+    return axios.get(`/api/review/tour/${tourId}`, { tourId: tourId });
+}
+
 
 export {
     postSignUp, postLogin, getAllUsers, postCreateNewUser, postUpdatePassword,
-    postCreateNewTour, getAllTours, deleteUser, deleteTour, putUpdateTour, getTourInfoByName
+    postCreateNewTour, getAllTours, deleteUser, deleteTour, putUpdateTour,
+    getTourInfoByName, createOrder, createReview, getReviewResponse
 }
