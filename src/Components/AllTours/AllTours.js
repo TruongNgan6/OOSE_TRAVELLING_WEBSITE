@@ -9,6 +9,7 @@ const AllTours = () => {
   const [listTours, setListTours] = useState([
     {
       tourId: '1',
+      rating: 3,
       title: 'ha noi',
       description: 'f',
       imageURL: 'f',
@@ -20,6 +21,7 @@ const AllTours = () => {
     },
     {
       tourId: '2',
+      rating: 3,
       title: 'tam ky',
       description: 'f',
       imageURL: 'f',
@@ -31,6 +33,7 @@ const AllTours = () => {
     },
     {
       tourId: '3',
+      rating: 3,
       title: 'quang nam',
       description: 'f',
       imageURL: 'f',
@@ -42,6 +45,7 @@ const AllTours = () => {
     },
     {
       tourId: '4',
+      rating: 5,
       title: 'da nang',
       description: 'f',
       imageURL: 'f',
@@ -53,6 +57,7 @@ const AllTours = () => {
     },
     {
       tourId: '5',
+      rating: 4,
       title: 'hoi an',
       description: 'f',
       imageURL: 'f',
@@ -64,6 +69,7 @@ const AllTours = () => {
     },
     {
       tourId: '6',
+      rating: 5,
       title: 'vung tau',
       description: 'f',
       imageURL: 'f',
@@ -75,6 +81,7 @@ const AllTours = () => {
     },
     {
       tourId: '7',
+      rating: 3,
       title: 'khanh hoa',
       description: 'f',
       imageURL: 'f',
@@ -111,6 +118,8 @@ const AllTours = () => {
                   price={item.price}
                   imageURL={item.imageURL}
                   tourName={item.title}
+                  rating={item.rating}
+
                 />
               )
             })

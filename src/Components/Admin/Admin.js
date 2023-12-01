@@ -34,6 +34,15 @@ const Admin = () => {
                             MANAGE TOUR
                         </button>
                     </div>
+
+                    <div>
+                        <button
+                            className={selectedButton === "order" ? "btn onclicked" : "btn btn-primary"}
+                            onClick={() => handleClick("order")}
+                        >
+                            MANAGE ORDER
+                        </button>
+                    </div>
                 </div>
 
 

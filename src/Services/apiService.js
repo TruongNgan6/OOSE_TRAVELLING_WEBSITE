@@ -174,9 +174,39 @@ const getReviewResponse = (tourId) => {
     return axios.get(`api/review/tour/${tourId}`, { tourId: tourId });
 }
 
+const getAllOrders = () => {
+    const token = localStorage.getItem("token");
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+
+    // Gửi yêu cầu GET với Axios và headers
+    return axios.get('api/admin/orders', { headers: headers })
+}
+
+const confirmOrder = (orderId) => {
+    //submit data
+    const token = localStorage.getItem("token");
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+
+    return axios.put(`/api/admin/orders/confirmed/${orderId}`, { orderId: orderId }, { headers: headers });
+}
+
+const cancelOrder = (orderId) => {
+    //submit data
+    const token = localStorage.getItem("token");
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    };
+
+    return axios.put(`/api/admin/orders/cancelled/${orderId}`, { orderId: orderId }, { headers: headers });
+}
 
 export {
     postSignUp, postLogin, getAllUsers, postCreateNewUser, postUpdatePassword,
     postCreateNewTour, getAllTours, deleteUser, deleteTour, putUpdateTour,
-    getTourInfoByName, createOrder, createReview, getReviewResponse
+    getTourInfoByName, createOrder, createReview, getReviewResponse, getAllOrders, confirmOrder,
+    cancelOrder
 }

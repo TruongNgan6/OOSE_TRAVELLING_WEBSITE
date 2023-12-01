@@ -13,7 +13,7 @@ const StarRating = ({ rating, onRatingChange }) => {
                         cursor: 'pointer',
                         fontSize: '24px',
                         color: rating >= star ? 'gold' : '#ccc',
-                        transition: 'color 0.3s, font-size 0.3s',
+                        // transition: 'color 0.3s, font-size 0.3s',
                         marginRight: '5px'
                     }}
                 >

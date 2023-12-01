@@ -10,6 +10,7 @@ import {
   IoLocateSharp,
   IoPricetagsOutline,
 } from "react-icons/io5";
+import { AiTwotoneThunderbolt } from "react-icons/ai";
 import { AiTwotoneCalendar } from "react-icons/ai";
 import { FaBed } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
@@ -27,27 +28,65 @@ const TourInfor = () => {
   const { tourName } = useParams();
   const [numberOfPeople, setNumberOfPeople] = useState(1); // Khởi tạo giá trị mặc định là 1
   const [numberOfRooms, setNumberOfRooms] = useState(1); // Khởi tạo giá trị mặc định là 1
-
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const [tourInfo, setTourInfo] = useState(
-    {}
-    // {
-    //   tourId: 2,
-    //   title: 'tam ky',
-    //   description: 'f',
-    //   imageURL: 'f',
-    //   price: 40000,
-    //   location: 'd',
-    //   duration: 'd',
-    //   quantity: 4,
-    //   departureDate: '04/05/2024',
-    // }
+    // {}
+    {
+      tourId: 2,
+      title: 'tam ky',
+      rating: 3,
+      description: 'f',
+      imageURL: 'https://unsplash.com/photos/yellow-volkswagen-van-on-road-A5rCN8626Ck',
+      price: 40000,
+      location: 'd',
+      duration: 'd',
+      quantity: 4,
+      departureDate: '04/05/2024',
+    }
   );
   console.log("check useparam", tourName)
 
   useEffect(() => {
     fetchTourInfo();
   }, [tourName]);
+
+  useEffect(() => {
+    // Cập nhật localStorage mỗi khi numberOfPeople thay đổi
+    localStorage.setItem('numberOfPeople', numberOfPeople.toString());
+  }, [numberOfPeople]);
+
+  useEffect(() => {
+    // Cập nhật localStorage mỗi khi numberOfRooms thay đổi
+    localStorage.setItem('numberOfRooms', numberOfRooms.toString());
+  }, [numberOfRooms]);
+
+  useEffect(() => {
+    // Cập nhật localStorage mỗi khi totalPrice thay đổi
+    localStorage.setItem('totalPrice', totalPrice.toString());
+  }, [totalPrice]);
+
+
+  // Cập nhật tổng tiền mỗi khi numberOfPeople hoặc numberOfRooms thay đổi
+  useEffect(() => {
+    const calculateTotalPrice = () => {
+      // Giá tour gốc
+      const basePrice = tourInfo.price;
+
+      // Tính giá tour dựa vào số người và số phòng
+      const tourPrice = basePrice * numberOfPeople;
+
+      // Phí cho từng phòng sau phòng đầu tiên (nếu có)
+      const roomPrice = numberOfRooms > 1 ? (numberOfRooms - 1) * 100 : 0;
+
+      // Tổng tiền
+      const total = tourPrice + roomPrice;
+
+      return total;
+    };
+
+    setTotalPrice(calculateTotalPrice());
+  }, [numberOfPeople, numberOfRooms, tourInfo.price]);
 
   // const fetchTourInfo = async () => {
   //   let res = await getTourInfoByName(tourName);
@@ -64,8 +103,12 @@ const TourInfor = () => {
     setTourInfo(res);
     // }
 
-    localStorage.setItem('bookingInfo', JSON.stringify({ numberOfPeople, numberOfRooms, tourId: res.tourId, title: res.title }));
+    localStorage.setItem('bookingInfo', JSON.stringify(tourInfo));
+    console.log('localStorage bookingInfo:', localStorage.getItem('bookingInfo'));
   };
+  // localStorage.setItem('bookingInfo', JSON.stringify(tourInfo));
+  // console.log('localStorage bookingInfo:', localStorage.getItem('bookingInfo'));
+
 
   console.log('check res ', tourInfo)
   return (
@@ -74,8 +117,9 @@ const TourInfor = () => {
       <div className="tour01-component">
         <div className="tour01-component-up">
           <img
+            // src={tourInfo.imageURL}
             src={PopularToursImage}
-            alt="tour01"
+            alt={tourInfo.title}
             className="tour01-component-01"
             style={{
               width: "100%",
@@ -85,7 +129,7 @@ const TourInfor = () => {
             }}
           />
         </div>
-        <div className="tour01-component-down">
+        <div className=" tour01-component-down">
           <div className="tour01-component-left">
             <div className="tour01-component-left-menubar">
               <div className="tour01-component-left-detail">Detail</div>
@@ -97,14 +141,30 @@ const TourInfor = () => {
             </div>
             <div className="tour01-component-left-detail-content">
               <div className="tour01-component-left-detail-content-title">
-                {tourInfo.title}
+                <AiTwotoneThunderbolt className="thunder-icon" /> {tourInfo.title}
               </div>
               <div className="tour01-component-left-detail-content-rating">
+                {/* <AiFillStar />
                 <AiFillStar />
                 <AiFillStar />
                 <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
+                <AiFillStar /> */}
+                {tourInfo.rating && tourInfo.rating > 0 && (
+                  Array.from({ length: tourInfo.rating }).map((_, index) => (
+                    <span
+                      key={index}
+                      style={{
+                        cursor: 'pointer',
+                        fontSize: '24px',
+                        color: 'gold',
+                        transition: 'color 0.3s, font-size 0.3s',
+                        marginRight: '5px'
+                      }}
+                    >
+                      ★
+                    </span>
+                  ))
+                )}
               </div>
               <div className="tour01-component-left-detail-content-day-maxpeople-wifi">
                 <div className="tour01-component-left-detail-content-day">
@@ -236,8 +296,8 @@ const TourInfor = () => {
           <div className="tour01-component-right">
             <div className="tour01-component-right-booking-process-form">
               <div className="tour01-component-right-booking-process-price">
-                <IoPricetagsOutline />
-                <span> ${tourInfo.price}</span>
+                <IoPricetagsOutline className="icon-price" />
+                <span> ${totalPrice}</span>
               </div>
               <div className="tour01-component-right-booking-process-title">
                 Booking Form

@@ -22,6 +22,7 @@ import TourInfor from "./Components/AllTours/Tours/TourInfor/TourInfor";
 import ProcessBooking from "./Components/AllTours/Tours/TourInfor/ProcessBooking";
 import Tours from "./Components/AllTours/Tours/Tours";
 import Payment from "./Components/AllTours/Tours/TourInfor/Payment/Payment";
+import ManageOrder from "./Components/Admin/ManageOrder";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
@@ -39,6 +40,7 @@ root.render(
           <Route path="admin" element={<Admin />} >
             <Route path="manage-user" element={<ManageUser />} />
             <Route path="manage-tour" element={<ManageTour />} />
+            <Route path="manage-order" element={<ManageOrder />} />
           </Route>
           <Route path="process-booking" element={<ProcessBooking />} />
           <Route path="payment" element={<Payment />} />

@@ -6,13 +6,14 @@ import { AiFillStar } from "react-icons/ai";
 import { AiTwotoneThunderbolt } from "react-icons/ai";
 import PopularToursImage from "../../../Assets/Images/populartours01.jpg";
 import TourInfor from "./TourInfor/TourInfor";
-const Tours = ({ tourName, title, price, imageURL }) => {
+const Tours = ({ tourName, title, price, imageURL, rating }) => {
   return (
     <div>
       <div className="tours-component">
         <div className="tours-content">
           <div className="tours-content-up">
-            <img src={imageURL} alt={title} />
+            {/* <img src={imageURL} alt={title} /> */}
+            <img src={PopularToursImage} />
           </div>
           <div className="tours-content-down">
             <div className="tours-content-title">
@@ -24,13 +25,29 @@ const Tours = ({ tourName, title, price, imageURL }) => {
               <LuTimerReset className="time-icon" />8 Hours
             </div>
             <div className="tours-content-rate-price">
-              <div className="tours-content-rate">
+              {/* <div className="tours-content-rate">
                 <AiFillStar />
                 <AiFillStar />
                 <AiFillStar />
                 <AiFillStar />
                 <AiFillStar />
-              </div>
+              </div> */}
+              {rating && rating > 0 && (
+                Array.from({ length: rating }).map((_, index) => (
+                  <span
+                    key={index}
+                    style={{
+                      cursor: 'pointer',
+                      fontSize: '24px',
+                      color: 'gold',
+                      transition: 'color 0.3s, font-size 0.3s',
+                      marginRight: '5px'
+                    }}
+                  >
+                    ★
+                  </span>
+                ))
+              )}
               <div className="tours-content-price">
                 From <span>${price}</span>
               </div>
