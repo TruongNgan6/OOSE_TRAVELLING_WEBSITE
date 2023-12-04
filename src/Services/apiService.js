@@ -204,9 +204,13 @@ const cancelOrder = (orderId) => {
     return axios.put(`/api/admin/order/cancel/${orderId}`, { orderId: orderId }, { headers: headers });
 }
 
+const getTourByLocation = (location) => {
+    return axios.get(`/api/tour/${location}`, { location: location });
+}
+
 export {
     postSignUp, postLogin, getAllUsers, postCreateNewUser, postUpdatePassword,
     postCreateNewTour, getAllTours, deleteUser, deleteTour, putUpdateTour,
     getTourInfoByName, createOrder, createReview, getReviewResponse, getAllOrders, confirmOrder,
-    cancelOrder
+    cancelOrder, getTourByLocation
 }
