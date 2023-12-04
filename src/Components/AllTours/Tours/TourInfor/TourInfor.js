@@ -31,19 +31,19 @@ const TourInfor = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const [tourInfo, setTourInfo] = useState(
-    // {}
-    {
-      tourId: 2,
-      title: 'tam ky',
-      rating: 3,
-      description: 'f',
-      imageURL: 'https://unsplash.com/photos/yellow-volkswagen-van-on-road-A5rCN8626Ck',
-      price: 40000,
-      location: 'd',
-      duration: 'd',
-      quantity: 4,
-      departureDate: '04/05/2024',
-    }
+    {}
+    // {
+    //   tourId: 2,
+    //   title: 'tam ky',
+    //   rating: 3,
+    //   description: 'f',
+    //   imageURL: 'https://unsplash.com/photos/yellow-volkswagen-van-on-road-A5rCN8626Ck',
+    //   price: 40000,
+    //   location: 'd',
+    //   duration: 'd',
+    //   quantity: 4,
+    //   departureDate: '04/05/2024',
+    // }
   );
   console.log("check useparam", tourName)
 
@@ -103,12 +103,16 @@ const TourInfor = () => {
     setTourInfo(res);
     // }
 
-    localStorage.setItem('bookingInfo', JSON.stringify(tourInfo));
-    console.log('localStorage bookingInfo:', localStorage.getItem('bookingInfo'));
+    // localStorage.setItem('bookingInfo', JSON.stringify(tourInfo));
+    // console.log('localStorage bookingInfo:', localStorage.getItem('bookingInfo'));
   };
   // localStorage.setItem('bookingInfo', JSON.stringify(tourInfo));
   // console.log('localStorage bookingInfo:', localStorage.getItem('bookingInfo'));
 
+  useEffect(() => {
+    localStorage.setItem('bookingInfo', JSON.stringify(tourInfo));
+    console.log('localStorage bookingInfo:', localStorage.getItem('bookingInfo'));
+  }, [tourInfo]);
 
   console.log('check res ', tourInfo)
   return (

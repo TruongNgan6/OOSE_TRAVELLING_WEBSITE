@@ -6,14 +6,11 @@ import { toast } from 'react-toastify';
 
 const ModalConfirmOrder = ({ show, handleClose, dataConfirm, fetchListOrders }) => {
 
-
-
     const handleSubmitConfirmOrder = async () => {
-
 
         let data = await confirmOrder(dataConfirm.orderId);
         console.log("check res", data)
-        if (data && data.message === "Confirmed Order Sucessfully!") {
+        if (data && data.message === "Confirmed Successfully") {
             toast.success(data.message);
             // handleSuccess();
             handleClose()

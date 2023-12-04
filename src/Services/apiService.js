@@ -171,7 +171,7 @@ const createReview = (tourId, rating, review) => {
 };
 
 const getReviewResponse = (tourId) => {
-    return axios.get(`api/review/tour/${tourId}`, { tourId: tourId });
+    return axios.get(`api/review/tour/${tourId}`);
 }
 
 const getAllOrders = () => {
@@ -181,7 +181,7 @@ const getAllOrders = () => {
     };
 
     // Gửi yêu cầu GET với Axios và headers
-    return axios.get('api/admin/orders', { headers: headers })
+    return axios.get('api/admin/order', { headers: headers })
 }
 
 const confirmOrder = (orderId) => {
@@ -191,7 +191,7 @@ const confirmOrder = (orderId) => {
         'Authorization': `Bearer ${token}`
     };
 
-    return axios.put(`/api/admin/orders/confirmed/${orderId}`, { orderId: orderId }, { headers: headers });
+    return axios.put(`/api/admin/order/confirm/${orderId}`, { orderId: orderId }, { headers: headers });
 }
 
 const cancelOrder = (orderId) => {
@@ -201,7 +201,7 @@ const cancelOrder = (orderId) => {
         'Authorization': `Bearer ${token}`
     };
 
-    return axios.put(`/api/admin/orders/cancelled/${orderId}`, { orderId: orderId }, { headers: headers });
+    return axios.put(`/api/admin/order/cancel/${orderId}`, { orderId: orderId }, { headers: headers });
 }
 
 export {

@@ -1,4 +1,4 @@
-import { useState } from 'react'; listUsers
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { cancelOrder } from '../../Services/apiService';
@@ -6,14 +6,11 @@ import { toast } from 'react-toastify';
 
 const ModalCancelOrder = ({ show, handleClose, dataCancel, fetchListOrders }) => {
 
-
-
     const handleSubmitCancelOrder = async () => {
-
 
         let data = await cancelOrder(dataCancel.orderId);
         console.log("check res", data)
-        if (data && data.message === "Cancelled Order Sucessfully!") {
+        if (data && data.message === "Cancelled Successfully") {
             toast.success(data.message);
             // handleSuccess();
             handleClose()

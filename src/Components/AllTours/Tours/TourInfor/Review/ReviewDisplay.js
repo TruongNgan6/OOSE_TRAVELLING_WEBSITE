@@ -16,6 +16,9 @@ const ReviewDisplay = () => {
     const bookingInfo = JSON.parse(localStorage.getItem('bookingInfo'));
     const tourId = bookingInfo.tourId;
 
+    console.log('tour id:', tourId);
+    console.log('bookinginfo:', bookingInfo);
+
     useEffect(() => {
         fetchReview();
     }, []);

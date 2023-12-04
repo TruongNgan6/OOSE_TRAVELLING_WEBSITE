@@ -3,6 +3,7 @@ import { getAllOrders } from '../../Services/apiService';
 import CreateNewUser from "./CreateNewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 import ModalConfirmOrder from "./ModalConfirmOrder";
+import ModalCancelOrder from "./ModalCancelOrder";
 
 const ManageOrder = (props) => {
     const [listOrders, setListOrders] = useState([
@@ -11,25 +12,15 @@ const ManageOrder = (props) => {
             notes: 'fd',
             status: 'we',
             totalPrice: 'r',
-            tourId: 3,
-            // title: 'f'
         },
         {
             orderId: 2,
             notes: 'fd',
             status: 'we',
             totalPrice: 'r',
-            tourId: 1,
-            // title: 'f'
         }
 
     ])
-
-
-
-
-
-
 
     //CONPONENT DID MOUNT
     useEffect(() => {
@@ -74,7 +65,7 @@ const ManageOrder = (props) => {
         <>
             <div className="container">
 
-                <div className="table-title">TABLE USERS</div>
+                <div className="table-title">ORDERS</div>
 
                 <table className="table table-hover table-bordered ">
                     <thead>
@@ -83,7 +74,6 @@ const ManageOrder = (props) => {
                             <th scope="col">Notes</th>
                             <th scope="col">Status</th>
                             <th scope="col">Total Price</th>
-                            <th scope="col">Tour ID</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -96,7 +86,6 @@ const ManageOrder = (props) => {
                                         <td>{item.notes}</td>
                                         <td>{item.status}</td>
                                         <td>{item.totalPrice}</td>
-                                        <td>{item.tourId}</td>
                                         <td>
                                             <button className="btn btn-danger mx-3"
                                                 onClick={() => {
@@ -122,7 +111,7 @@ const ManageOrder = (props) => {
                                                 }
 
                                             >Cancel</button>
-                                            <ModalConfirmOrder
+                                            <ModalCancelOrder
                                                 show={showCancelModal}
                                                 handleClose={handleCloseCancelModal}
                                                 dataCancel={dataCancel}
